@@ -1,0 +1,9 @@
+bloodbank\entity\TestCRUDAddress.class
+bloodbank\entity\TestCRUDPhone.class
+bloodbank\entity\TestCRUDPrivateBloodBank.class
+bloodbank\entity\TestCRUDBloodDonation.class
+common\JUnitBase.class
+bloodbank\entity\TestCRUDPublicBloodBank.class
+bloodbank\entity\TestCRUDDonationRecord.class
+bloodbank\entity\TestCRUDContactOriginal.class
+bloodbank\entity\TestCRUDPerson.class

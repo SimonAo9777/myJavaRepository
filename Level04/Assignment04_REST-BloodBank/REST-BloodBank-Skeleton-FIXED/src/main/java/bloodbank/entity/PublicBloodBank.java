@@ -1,0 +1,32 @@
+/***************************************************************************
+ * File: PublicBloodBank.java Course materials (21F) CST 8277
+ * 
+ * @author Teddy Yap
+ * @author Shariar (Shawn) Emami
+ * @date Mar 9, 2021
+ * 
+ * Update By Students:
+ * @author Simon Ao
+ * @author Chik Matthew
+ * @author Park Fred
+ * @author Sun Ding
+ * 
+ * @date 04/12/2021
+ */
+package bloodbank.entity;
+
+import java.io.Serializable;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue( "0") //value 1 is private and value 0 is public
+public class PublicBloodBank extends BloodBank implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	public PublicBloodBank() {
+		super();
+	}
+}

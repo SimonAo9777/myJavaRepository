@@ -1,0 +1,91 @@
+/***************************************************************************
+ * File: DonationRecordResource.java Course materials (21F) CST 8277
+ * 
+ * Created By Students:
+ * @author Simon Ao
+ * @author Chik Matthew
+ * @author Park Fred
+ * @author Sun Ding
+ * 
+ * @date 04/12/2021
+ */
+package bloodbank.rest.resource;
+
+import static bloodbank.utility.MyConstants.ADMIN_ROLE;
+import static bloodbank.utility.MyConstants.USER_ROLE;
+import java.util.List;
+import javax.annotation.security.RolesAllowed;
+import javax.ejb.EJB;
+import javax.inject.Inject;
+import javax.security.enterprise.SecurityContext;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import bloodbank.ejb.BloodBankService;
+import bloodbank.entity.DonationRecord;
+
+
+
+@Path("donationrecord")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
+public class DonationRecordResource {
+
+	private static final Logger LOG = LogManager.getLogger();
+
+	@EJB
+	protected BloodBankService service;
+
+	@Inject
+	protected SecurityContext sc;
+
+	@GET
+    @RolesAllowed({ADMIN_ROLE})
+	public Response getDonationRecords() {
+		LOG.debug("retrieving all records ...");
+		List<DonationRecord> records = service.getAll(DonationRecord.class,  DonationRecord.ALL_RECORDS_QUERY_NAME);
+		Response response = Response.ok(records).build();
+		return response;
+	}
+
+	@GET
+	@RolesAllowed({ADMIN_ROLE, USER_ROLE})
+	@Path("/{donationRecordID}")
+	public Response getDonationRecordById(@PathParam("donationRecordID") int id) {
+		LOG.debug("try to retrieve specific record " + id);
+		
+		DonationRecord record = service.getById(DonationRecord.class, DonationRecord.ID_RECORD_QUERY_NAME, id);
+		Response response = Response.ok(record).build();
+		return response;
+	}
+
+	@POST
+	@RolesAllowed({ADMIN_ROLE})
+	@Path("/person/{personID}/blooddonation/{donationID}")
+	public Response addDonationRecord(DonationRecord newRecord, @PathParam("personID") int personID, @PathParam("donationID") int donationID) {
+		LOG.debug("Adding a new doantionRecord = {}", newRecord);	
+				
+		DonationRecord record = service.persistDonationRecord(newRecord,personID,donationID);
+		return Response.ok( record).build();
+	}
+
+	@DELETE
+	@RolesAllowed({ADMIN_ROLE})
+	@Path("/{donationRecordID}")
+	public Response deleteAddress(@PathParam("donationRecordID") int recordID) {
+		LOG.debug("Deleting a specific record with id = {}", recordID);
+		DonationRecord donationRecord = service.getById(DonationRecord.class, DonationRecord.ID_RECORD_QUERY_NAME, recordID);
+		service.deleteDonationRecordById(recordID);
+		Response response = Response.ok(donationRecord).build();
+		return response;
+	}
+}
