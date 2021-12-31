@@ -1,0 +1,36 @@
+#button_connect > .label {
+	-fx-graphic: url("technology.png");
+}
+
+#button_database > .label {
+	-fx-graphic: url("database.png");
+}
+
+#button_login > .label {
+	-fx-graphic: url("logical-thinking.png");
+}
+
+#button_help > .label {
+	-fx-graphic: url("question.png");
+}
+
+#button_about > .label {
+	-fx-graphic: url("information.png");
+}
+
+#button_about > .label {
+	-fx-graphic: url("information.png");
+}
+
+#glucos_tabs{
+	-fx-tab-min-height: 40;
+	-fx-tab-max-height: 1000;
+}
+
+#glucose_view_tab .tab-label {
+	-fx-graphic: url("chart.png");
+}
+
+#glucose_entry_tab .tab-label {
+	-fx-graphic: url("glucose.png");
+}

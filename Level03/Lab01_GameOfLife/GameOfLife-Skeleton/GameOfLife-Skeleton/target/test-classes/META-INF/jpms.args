@@ -1,0 +1,4 @@
+--patch-module
+gameoflife=_
+--add-reads
+gameoflife=ALL-UNNAMED

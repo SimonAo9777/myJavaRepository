@@ -1,0 +1,17 @@
+jdbc\JDBCController.class
+jfx\custom\LoginDialog.class
+jdbc\JDBCModel.class
+example\TimeExample.class
+module-info.class
+jfx\custom\GlucoseEntry.class
+diabetesrecorder\DiabetesRecorder.class
+common\FunctionThrow.class
+jdbc\Controller.class
+jdbc\url\JDBCURLBuilder.class
+jfx\custom\ErrorDialog.class
+jfx\custom\ConnectDialog.class
+jdbc\url\MySQLURLBuilder.class
+example\PropertyExample.class
+common\CommonGUIBuilder.class
+jdbc\url\JDBCUrl.class
+jfx\custom\GlucoseView.class

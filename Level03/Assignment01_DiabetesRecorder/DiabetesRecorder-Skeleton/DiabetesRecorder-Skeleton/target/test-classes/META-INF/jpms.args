@@ -1,0 +1,4 @@
+--patch-module
+diabetesrecorder=_
+--add-reads
+diabetesrecorder=ALL-UNNAMED
